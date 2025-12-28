@@ -36,13 +36,7 @@ git push origin main
 git tag v1.0.0
 git push origin v1.0.0
 ```
-🖥️ Como rodar localmente
 
-Após o build da imagem, você pode rodar o contêiner localmente com:
-Bash
-```
-docker run -d -p 8080:8080 --name baleia-app jessicaapbueno/baleia-app:latest
-```
 <img width="1353" height="644" alt="image" src="https://github.com/user-attachments/assets/326aa88a-678e-4e86-8925-0fdeda39d28d" />
 <img width="1366" height="373" alt="image" src="https://github.com/user-attachments/assets/db84294c-8f0b-4487-b299-38a72dab19d3" />
 
