@@ -1,0 +1,36 @@
+# Este workflow é ativado quando uma nova tag Git é enviada para o repositório.
+name: Push Docker image on new tag
+
+on:
+  push:
+    # Configura o gatilho para rodar apenas quando houver tags.
+    # O '*' corresponde a qualquer nome de tag (ex: v1.0.0, 2.0, etc).
+    tags:
+      - '*'
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      # Passo 1: Faz o checkout do código do repositório.
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      # Passo 2: Faz login no Docker Hub usando as Secrets que você configurará no GitHub.
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      # Passo 3: Build e Push da imagem.
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          # Aqui o código foi corrigido com o seu usuário jessicaapbueno
+          tags: |
+            jessicaapbueno/baleia-app:${{ github.ref_name }}
+            jessicaapbueno/baleia-app:latest
