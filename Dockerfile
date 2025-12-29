@@ -1,5 +1,5 @@
 # Start from the latest golang base image as the builder stage
-FROM golang:latest AS builder
+FROM golang:alpine AS builder
 
 # Add Maintainer Info
 LABEL maintainer="Your Name <your.email@example.com>"
